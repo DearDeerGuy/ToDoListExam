@@ -1,0 +1,52 @@
+﻿@model ToDoListExam.Models.ViewModels.ToDoListMainViewModel
+
+@{
+    ViewData["Title"] = "Головна";
+}
+<link href="~/css/todolist.css" rel="stylesheet" type="text/css"/>
+<form method="get">
+    <select asp-for="@Model.SelectedCategoryId" class="form-control" asp-items="Model.Categories">
+        <option value="-1">Всі</option>
+    </select>
+    <select asp-for="@Model.SelectedEnded" class="form-control">
+        <option>Всі</option>
+        <option>Виконані</option>
+        <option>Не виконані</option>
+    </select>
+    <select asp-for="@Model.SelectedSort" class="form-control">
+        <option>Пріорітет</option>
+        <option>Дата виконання</option>
+    </select>
+    <input asp-for="@Model.Search" class="form-control" placeholder="Пошук"/>
+    <input type="submit" value="Знайти" class="btn btn-primary"/>
+</form>
+<div class="todolist-items-block">
+    @foreach (var item in Model.Items)
+    {
+            <div class="todolist-item @(item.IsEnded == true ? "ended" : "notended")">
+            <div>
+                <h1>@item.Name</h1>
+                <h1>
+                @for(int i = 1; i <= 5; i++)
+                {
+                        if(i <= item.Priority) { <span>&#9733;</span> }
+                        else
+                        {
+                            <span>&#9734;</span>
+                        }
+                }
+                </h1>
+                <h3>@item.Category.CategoryName</h3>
+                <p>@item.Description</p>
+                <h5 class="@(item.CompleteDate.Date < DateTime.Now.Date ? "text-danger" : "text-black") ">@item.CompleteDate.ToShortDateString()</h5>
+            </div>
+            <div class="todolist-item-buttons">
+                <a asp-action="MakeChecked" asp-route-id="@item.Id"><button class="btn btn-primary">@(item.IsEnded ? "Виконано" : "Не виконано")</button></a>
+                <a asp-action="Details" asp-route-id="@item.Id"><button class="btn btn-primary">Деталі</button></a>
+                <a asp-action="Edit" asp-route-id="@item.Id"><button class="btn btn-primary">Редагувати</button></a>
+                <a asp-action="Delete" asp-route-id="@item.Id"><button class ="btn btn-danger">Видалити</button></a>
+            </div>
+            </div>
+    }
+</div>
+

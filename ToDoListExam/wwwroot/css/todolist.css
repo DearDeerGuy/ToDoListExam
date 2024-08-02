@@ -1,0 +1,42 @@
+﻿.todolist-items-block {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 15px;
+    justify-content: space-around;
+}
+.todolist-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-width: 200px;
+    max-width: 350px;
+    border-radius: 5px;
+    padding: 15px;
+    background-color: white;
+    margin: 15px;
+}
+.todolist-item p {
+    overflow: hidden;
+}
+.todolist-item-buttons {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.todolist-item-buttons a {
+    display: inline-block;
+    width: 100%;
+    margin: 5px;
+}
+.todolist-item-buttons a button {
+    width: 100%;
+}
+.ended {
+    background-color: lightgray;
+    opacity: 0.5;
+}
+.notended {
+    background-color: none;
+}

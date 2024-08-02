@@ -1,0 +1,19 @@
+﻿.central {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+}
+.myform {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    max-width: 350px;
+    background-color: white;
+    border-radius: 5px;
+    padding: 15px;
+}
+.myform input, .myform select, .myform textarea {
+    margin-bottom: 15px;
+    width: 100%;
+}

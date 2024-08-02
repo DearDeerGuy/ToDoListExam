@@ -1,0 +1,51 @@
+﻿@using ToDoListExam.Models.ViewModels
+@model LoginViewModel
+@{
+    ViewData["Title"] = "Авторизація";
+}
+
+<div class="row central">
+    <div class="col">
+        <h1>Авторизація</h1>
+        <div asp-validation-summary="ModelOnly" class="text-warning"></div>
+        <form method="post">
+            <input type="hidden" asp-for="ReturnUrl">
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label">Пошта</label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-warning"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Password" class="form-label">Пароль</label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-warning"></span>
+            </div>
+
+            <div class="mb-3">
+                <input asp-for="RememberMe" class="form-check-input" />
+                <label asp-for="RememberMe" class="form-check-label">Запам`ятати мене</label>
+
+                <span asp-validation-for="Password" class="text-warning"></span>
+            </div>
+
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary form-control">Увійти</button>
+            </div>
+
+            <div class="mb-3">
+                <a asp-action="GoogleLogin" class="btn btn-warning form-control">Google</a>
+            </div>
+
+            <div class="mb-3">
+                <a asp-action="GitHubLogin" asp-controller="Account" class="btn btn-warning form-control">GitHub</a>
+            </div>
+
+            <div class="mb-3">
+                <a asp-action="Register" asp-controller="Account" class="btn btn-danger form-control">Реєстрація</a>
+            </div>
+        </form>
+
+    </div>
+</div>
+

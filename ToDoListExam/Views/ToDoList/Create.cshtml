@@ -1,0 +1,51 @@
+﻿@model ToDoListExam.Models.ViewModels.ToDoListItemViewModel
+
+@{
+    ViewData["Title"] = "Додати справу";
+}
+<link href="~/css/create.css" rel="stylesheet" type="text/css" />
+<h1 class="text-white">Додати справу</h1>
+<hr class="text-white"/>
+<div class="row central">
+    <div class="col-md-6 myform">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input asp-for="@Model.ToDoListItem.UserId" hidden/>
+            <div class="form-group">
+                <label class="control-label">Назва</label>
+                <input asp-for="@Model.ToDoListItem.Name" class="form-control" />
+                <span asp-validation-for="@Model.ToDoListItem.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Опис</label>
+                <textarea asp-for ="@Model.ToDoListItem.Description" class="form-control"></textarea>
+                <span asp-validation-for="@Model.ToDoListItem.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Категорія</label>
+                <select asp-for="@Model.ToDoListItem.CategoryId" class="form-control" asp-items="Model.Categories"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Пріорітет</label>
+                <input asp-for="@Model.ToDoListItem.Priority" type="number" class="form-control" min="1" max="5" />
+                <span asp-validation-for="@Model.ToDoListItem.Priority" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Виконати до</label>
+                <input asp-for="@Model.ToDoListItem.CompleteDate" class="form-control" type="date"/>
+                <span asp-validation-for="@Model.ToDoListItem.CompleteDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Створити" class="btn btn-primary" />
+                <br />
+                <a asp-action="Index">Назад до списку</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
